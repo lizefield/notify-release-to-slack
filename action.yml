@@ -1,9 +1,6 @@
 name: 'Notify release to Slack'
 description: 'Get release message and send to Slack'
 inputs:
-  githubToken:
-    description: 'GitHub Token'
-    required: true
   slackWebhookUrl:
     description: 'Slack incomming webhook url'
     required: true

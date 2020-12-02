@@ -1,24 +1,12 @@
 const core = require('@actions/core')
-const github = require('@actions/github')
 const fetch = require('node-fetch')
 
-async function getReleaseMessage(GITHUB_REPOSITORY, GITHUB_REF, githubToken) {
-  const repos = GITHUB_REPOSITORY.split('/')
-  const owner = repos[0]
-  const repo = repos[1]
-  const octokit = github.getOctokit(githubToken)
-
-  const data = await octokit.repos.getRelease({
-    owner,
-    repo,
-    GITHUB_REF,
-  })
-
-  console.log(data)
-  return data
-}
-
-async function sendMessage(slackWebhookUrl, text) {
+async function sendMessage(slackWebhookUrl, releaseMessage) {
+  console.log(slackWebhookUrl)
+  console.log(text)
+  const text = {
+    text: releaseMessage
+  }
   const response = await fetch(slackWebhookUrl, {
     method: 'POST',
     headers: {
@@ -26,27 +14,16 @@ async function sendMessage(slackWebhookUrl, text) {
     },
     body: JSON.stringify(text)
   })
-
+  console.log(JSON.stringify(response))
   return response
 }
 
 function run() {
   try {
-    const GITHUB_REPOSITORY = process.env['GITHUB_REPOSITORY']
-    if (!GITHUB_REPOSITORY) {
-      throw new Error('Missing environment GITHUB_REPOSITORY')
-    }
-    const GITHUB_REF = process.env['GITHUB_REF']
-    if (!GITHUB_REF) {
-      throw new Error('Missing environment GITHUB_REF')
-    }
-
-    const githubToken = core.getInput('githubToken')
     const slackWebhookUrl = core.getInput('slackWebhookUrl')
-    let releaseMessage = core.getInput('releaseMessage')
-
-    if (!releaseMessage) {
-      releaseMessage = getReleaseMessage(GITHUB_REPOSITORY, GITHUB_REF, githubToken)
+    const releaseMessage = core.getInput('releaseMessage')
+    if (!slackWebhookUrl || !releaseMessage) {
+      throw new Error('Missing parameters')
     }
     const response = sendMessage(slackWebhookUrl, releaseMessage)
 
