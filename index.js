@@ -2,11 +2,10 @@ const core = require('@actions/core')
 const fetch = require('node-fetch')
 
 async function sendMessage(slackWebhookUrl, releaseMessage) {
-  console.log(slackWebhookUrl)
-  console.log(releaseMessage)
   const text = {
     text: releaseMessage
   }
+  
   const response = await fetch(slackWebhookUrl, {
     method: 'POST',
     headers: {
@@ -14,7 +13,7 @@ async function sendMessage(slackWebhookUrl, releaseMessage) {
     },
     body: JSON.stringify(text)
   })
-  console.log(JSON.stringify(response))
+
   return response
 }
 
@@ -22,6 +21,7 @@ function run() {
   try {
     const slackWebhookUrl = core.getInput('slackWebhookUrl')
     const releaseMessage = core.getInput('releaseMessage')
+
     if (!slackWebhookUrl || !releaseMessage) {
       throw new Error('Missing parameters')
     }
