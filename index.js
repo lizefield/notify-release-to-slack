@@ -1,5 +1,6 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
+const fetch = require('node-fetch')
 
 async function getReleaseMessage(GITHUB_REPOSITORY, GITHUB_REF, githubToken) {
   const repos = GITHUB_REPOSITORY.split('/')

@@ -7,6 +7,7 @@ module.exports =
 
 const core = __webpack_require__(352)
 const github = __webpack_require__(969)
+const fetch = __webpack_require__(547)
 
 async function getReleaseMessage(GITHUB_REPOSITORY, GITHUB_REF, githubToken) {
   const repos = GITHUB_REPOSITORY.split('/')
