@@ -43,9 +43,12 @@ function run() {
 
     const githubToken = core.getInput('githubToken')
     const slackWebhookUrl = core.getInput('slackWebhookUrl')
+    let releaseMessage = core.getInput('releaseMessage')
 
-    const text = getReleaseMessage(GITHUB_REPOSITORY, GITHUB_REF, githubToken)
-    const response = sendMessage(slackWebhookUrl, text)
+    if (!releaseMessage) {
+      releaseMessage = getReleaseMessage(GITHUB_REPOSITORY, GITHUB_REF, githubToken)
+    }
+    const response = sendMessage(slackWebhookUrl, releaseMessage)
 
     core.setOutput('response', response)
   } catch (error) {

@@ -7,6 +7,9 @@ inputs:
   slackWebhookUrl:
     description: 'Slack incomming webhook url'
     required: true
+  releaseMessage:
+    description: 'Release message'
+    required: false
 outputs:
   response:
     description: 'Response from Slack'
