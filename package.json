@@ -1,0 +1,23 @@
+{
+  "name": "notify-release-to-slack",
+  "version": "0.0.1",
+  "description": "notify release to slack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizefield/notify-release-to-slack.git"
+  },
+  "author": "lizefield",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lizefield/notify-release-to-slack/issues"
+  },
+  "homepage": "https://github.com/lizefield/notify-release-to-slack#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  }
+}

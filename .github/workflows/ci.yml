@@ -1,0 +1,17 @@
+name: "CI"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: echo "${{ github.event.release }}" | tr '\n' ' '
+    - name: get message and post to slack
+      uses: ./
+      with:
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
+        slackWebhookUrl: ${{ secrets.SLACK_WEBHOOK_URL }}
