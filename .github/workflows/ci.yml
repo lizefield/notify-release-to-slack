@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      run: |
+    - run: |
         echo "${{ github.event.release.tag_name }}"
         echo "${{ github.event.release.name }}"
         echo "${{ github.event.release.body }}"
