@@ -7,6 +7,9 @@ inputs:
   slackWebhookUrl:
     description: 'Slack incomming webhook url'
     required: true
+outputs:
+  response:
+    description: 'Response from Slack'
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'
