@@ -15,6 +15,5 @@ jobs:
     - name: get message and post to slack
       uses: ./
       with:
-        githubToken: ${{ secrets.GITHUB_TOKEN }}
         slackWebhookUrl: ${{ secrets.SLACK_WEBHOOK_URL }}
         releaseMessage: ${{ github.event.release.body }}
