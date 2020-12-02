@@ -10,7 +10,7 @@ const fetch = __webpack_require__(547)
 
 async function sendMessage(slackWebhookUrl, releaseMessage) {
   console.log(slackWebhookUrl)
-  console.log(text)
+  console.log(releaseMessage)
   const text = {
     text: releaseMessage
   }

@@ -3,7 +3,7 @@ const fetch = require('node-fetch')
 
 async function sendMessage(slackWebhookUrl, releaseMessage) {
   console.log(slackWebhookUrl)
-  console.log(text)
+  console.log(releaseMessage)
   const text = {
     text: releaseMessage
   }
