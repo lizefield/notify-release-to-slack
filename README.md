@@ -3,9 +3,25 @@
 GitHub Actions Trigger
 
 ```
+name: "CI"
 on:
   release:
     types: [published]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        echo "${{ github.event.release.tag_name }}"
+        echo "${{ github.event.release.name }}"
+        echo "${{ github.event.release.body }}"
+    - name: get message and post to slack
+      uses: ./
+      with:
+        slackWebhookUrl: ${{ secrets.SLACK_WEBHOOK_URL }}
+        releaseMessage: ${{ github.event.release.body }}
 ```
 
 ## setup
