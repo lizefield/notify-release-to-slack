@@ -3,7 +3,7 @@
 GitHub Actions Trigger
 
 ```
-name: "CI"
+name: "Notify release to Slack"
 on:
   release:
     types: [published]
