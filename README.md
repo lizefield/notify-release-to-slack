@@ -17,8 +17,8 @@ jobs:
         echo "${{ github.event.release.tag_name }}"
         echo "${{ github.event.release.name }}"
         echo "${{ github.event.release.body }}"
-    - name: get message and post to slack
-      uses: actions/notify-release-to-slack@v1.0
+    - name: Notify release to Slack
+      uses: lizefield/notify-release-to-slack@v1.0
       with:
         slackWebhookUrl: ${{ secrets.SLACK_WEBHOOK_URL }}
         releaseMessage: ${{ github.event.release.body }}
